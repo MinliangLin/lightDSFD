@@ -429,19 +429,19 @@ class Network(nn.Module):
             face_priors, head_priors, body_priors = priors
             if face_priors.shape[0] != batch:
                 face_priors = (
-                    face_priors.view([1] + list(face_priors.shape)).expand([batch] + list(face_priors.shape)).cuda()
+                    face_priors.view([1] + list(face_priors.shape)).expand([batch] + list(face_priors.shape))#.cuda()
                 )
                 head_priors = (
-                    head_priors.view([1] + list(head_priors.shape)).expand([batch] + list(head_priors.shape)).cuda()
+                    head_priors.view([1] + list(head_priors.shape)).expand([batch] + list(head_priors.shape))#.cuda()
                 )
                 body_priors = (
-                    body_priors.view([1] + list(body_priors.shape)).expand([batch] + list(body_priors.shape)).cuda()
+                    body_priors.view([1] + list(body_priors.shape)).expand([batch] + list(body_priors.shape))#.cuda()
                 )
         else:
             face_priors = priors
             if face_priors.shape[0] != batch:
                 face_priors = (
-                    face_priors.view([1] + list(face_priors.shape)).expand([batch] + list(face_priors.shape)).cuda()
+                    face_priors.view([1] + list(face_priors.shape)).expand([batch] + list(face_priors.shape))#.cuda()
                 )
 
         # 
@@ -470,7 +470,7 @@ class Network(nn.Module):
     def init_priors(self, cfg, min_size=cfg["min_sizes"], max_size=cfg["max_sizes"], batch=1):
         priorbox = PriorBox(cfg, min_size, max_size, batch=batch)
         with torch.no_grad():
-            prior = priorbox.forward().cuda()
+            prior = priorbox.forward()#.cuda()
         return prior
 
     def _initialize_alphas(self):

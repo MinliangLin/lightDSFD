@@ -74,6 +74,8 @@ class Detect(Function):
                 #t3 = time.time()
                 ids, count = nms(boxes, scores, self.nms_thresh, self.top_k)
                 #t4 = time.time()
+                if count == 0:
+                    continue
                 output[i, cl, :count] = torch.cat((scores[ids[:count]].unsqueeze(1), boxes[ids[:count]]), 1)
         #t2 = time.time()
         #print ("decode : " , t4-t3)
